@@ -1,0 +1,96 @@
+/******************************流水灯************************
+* 流水灯
+* 现象：交通灯
+*************************************************************/
+
+#include "sys.h"
+#include "delay.h"
+#include "led.h"
+
+u8 light;
+   int p,q;
+ 	int interval = 1;
+	void green_delay()
+{
+		for( q=0;q<10;q++){
+	GPIOE->ODR &= ~(0xff<<8);
+	LED_SEL = 1; //选择二极管	
+	
+	
+		light = 0x80;
+		GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+
+		for(p=0;p<3;p++){
+		light = light>>1;
+		 GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+		}
+	
+	{	delay_ms( 500 ); 		}
+		 GPIOE->ODR &= ~(0xff<<8);
+		 delay_ms( 500 ); 
+		}					
+}
+ void red_delay()
+{
+
+	  	for( q=0;q<20;q++){
+	GPIOE->ODR &= ~(0xff<<8);
+	LED_SEL = 1; //选择二极管	
+	
+	
+		light = 0x01;
+		GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+
+		for(p=0;p<3;p++){
+		light = light<<1;
+		 GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+		}
+	
+	{	delay_ms( 500 ); 		}
+		 GPIOE->ODR &= ~(0xff<<8);
+		 delay_ms( 500 ); 
+	}				
+}
+void switch_delay()
+{
+	for( q=0;q<3;q++){
+	GPIOE->ODR &= ~(0xff<<8);
+	LED_SEL = 1; //选择二极管	
+	
+	
+		light = 0x80;
+		GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+
+		for(p=0;p<7;p++){
+		light = light>>1;
+		 GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+		}
+	
+		{	delay_ms( 500 ); 		}
+		 GPIOE->ODR &= ~(0xff<<8);
+		 delay_ms( 500 ); 
+		 }					
+}
+int main( void )
+{
+
+	Stm32_Clock_Init( 6 );  //6倍频
+	delay_init( 72 ); //12M外部晶振
+	LED_Init();
+	GPIOE->ODR &= ~(0xff<<8);
+	LED_SEL = 1; //选择二极管	
+	
+	while( 1 )
+	{
+		green_delay();
+		switch_delay();
+		red_delay();
+							
+	}
+}

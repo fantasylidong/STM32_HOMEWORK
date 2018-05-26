@@ -1,0 +1,66 @@
+/******************************8位数码管动态扫描************************
+* 8位数码管动态扫描
+* 浮点数显示
+***********************************************************************/
+
+#include "sys.h"
+#include "delay.h"
+#include "led.h"
+
+ 
+#define uchar unsigned char
+
+uchar show_w1,show_w2,show_w3,show_w4,show_w5,show_w6,show_w7,show_w8,flag,count;
+uchar seg[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
+unsigned char clock[]={0,1,2,3,4,5,6,7,8,9};
+int min=5,sec1=0,sec2=1;
+
+/***************************主函数*****************************/
+int main()
+{
+	int j;	 
+	int k;
+	int interval = 1;
+	int interval1 = 1000;
+	//uchar i;
+
+	Stm32_Clock_Init( 6 ); // (12M的)6倍频
+	delay_init( 72 );
+	LED_Init();
+
+	LED_SEL = 0;
+	show_w1=0;
+	show_w2=1;
+	show_w3=2;
+	show_w4=3;
+	show_w5=4;
+	show_w6=5;
+	show_w7=6;
+	show_w8=7;
+	
+ 
+	while(1)
+	{
+
+		  
+		  	  //浮点数显示，SetLedm函数显示有小数点的数字，SetLed1显示正常数字
+		   SetLedm(0,3);
+		   delay_ms(interval);
+		   SetLed1(1,7);
+		   delay_ms(interval);
+		 	SetLed1(2,6);
+		   delay_ms(interval);
+ 			SetLed1(3,7);
+		   delay_ms(interval);
+ 				SetLed1(4,3);
+		   delay_ms(interval);
+ 				SetLed1(5,5);
+		   delay_ms(interval);
+ 			SetLed1(6,2);
+		   delay_ms(interval);
+ 			SetLed1(7,0);
+		   delay_ms(interval);
+			 
+		
+	}	 
+  }

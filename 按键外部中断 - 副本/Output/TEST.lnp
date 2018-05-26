@@ -1,0 +1,4 @@
+--cpu Cortex-M3 "..\..\output\stm32f10x.o" "..\..\output\test.o" "..\..\output\delay.o" "..\..\output\sys.o" "..\..\output\led.o" "..\..\output\key.o" "..\..\output\exti.o" --library_type=microlib --strict --scatter "..\..\Output\TEST.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\TEST.map" -o "..\..\Output\TEST.axf"

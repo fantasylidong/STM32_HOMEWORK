@@ -1,0 +1,125 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\嵌入式实验\ADC\ADC 温度与光照测量3交替显示\USER\Temperature_Light.uvproj
+Project File Date:  04/06/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STM32F10x.s...
+compiling main.c...
+main.c(37): warning:  #223-D: function "KEY_Scan" declared implicitly
+main.c:                         t = KEY_Scan();//得到键值
+main.c:                             ^
+main.c(80): warning:  #1-D: last line of file ends without a newline
+main.c:   }
+main.c:    ^
+main.c: main.c: 2 warnings, 0 errors
+compiling adc.c...
+compiling key.c...
+compiling led.c...
+compiling delay.c...
+compiling sys.c...
+compiling usart.c...
+linking...
+Program Size: Code=10332 RO-data=332 RW-data=28 ZI-data=612  
+FromELF: creating hex file...
+"..\temp\Temperature_Light.axf" - 0 Error(s), 2 Warning(s).
+Load "..\\temp\\Temperature_Light.AXF" 
+Set JLink Project File to "D:\嵌入式实验\ADC\ADC 温度与光照测量3交替显示\USER\JLinkSettings.ini"
+ 
+JLink info:
+------------
+DLL: V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+S/N : 20080643 
+Feature(s) : RDI,FlashDL,FlashBP,JFlash,GDBFull 
+ 
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: TPIU fitted.
+* JLink Info:   FPUnit: 6 code (BP) slots and 2 literal slots
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F103VB
+VTarget = 3.293V
+State of Pins: 
+TCK: 0, TDI: 1, TDO: 1, TMS: 0, TRES: 1, TRST: 0
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: TPIU fitted.
+* JLink Info:   FPUnit: 6 code (BP) slots and 2 literal slots
+Hardware-Breakpoints: 6
+Software-Breakpoints: 2048
+Watchpoints:          4
+JTAG speed: 4000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+assembling STM32F10x.s...
+compiling main.c...
+main.c(33): error:  #127: expected a statement
+main.c:                                         else flag=2;
+main.c:                                         ^
+main.c(37): warning:  #223-D: function "KEY_Scan" declared implicitly
+main.c:                         t = KEY_Scan();//得到键值
+main.c:                             ^
+main.c(80): warning:  #1-D: last line of file ends without a newline
+main.c:   }
+main.c:    ^
+main.c: main.c: 2 warnings, 1 error
+compiling adc.c...
+compiling key.c...
+compiling led.c...
+compiling delay.c...
+compiling sys.c...
+compiling usart.c...
+Target not created
+Load "..\\temp\\Temperature_Light.AXF" 
+_____^
+*** error 56: cant open file
+Build target 'Target 1'
+assembling STM32F10x.s...
+compiling main.c...
+main.c(33): error:  #127: expected a statement
+main.c:                                         else flag=2;
+main.c:                                         ^
+main.c(37): warning:  #223-D: function "KEY_Scan" declared implicitly
+main.c:                         t = KEY_Scan();//得到键值
+main.c:                             ^
+main.c(80): warning:  #1-D: last line of file ends without a newline
+main.c:   }
+main.c:    ^
+main.c: main.c: 2 warnings, 1 error
+compiling adc.c...
+compiling key.c...
+compiling led.c...
+compiling delay.c...
+compiling sys.c...
+compiling usart.c...
+Target not created
+Build target 'Target 1'
+assembling STM32F10x.s...
+compiling main.c...
+main.c(37): warning:  #223-D: function "KEY_Scan" declared implicitly
+main.c:                         t = KEY_Scan();//得到键值
+main.c:                             ^
+main.c(80): warning:  #1-D: last line of file ends without a newline
+main.c:   }
+main.c:    ^
+main.c: main.c: 2 warnings, 0 errors
+compiling adc.c...
+compiling key.c...
+compiling led.c...
+compiling delay.c...
+compiling sys.c...
+compiling usart.c...
+linking...
+Program Size: Code=10332 RO-data=332 RW-data=28 ZI-data=612  
+FromELF: creating hex file...
+"..\temp\Temperature_Light.axf" - 0 Error(s), 2 Warning(s).

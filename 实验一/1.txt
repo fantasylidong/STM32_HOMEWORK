@@ -1,0 +1,38 @@
+/******************************流水灯************************
+* 流水灯
+* 现象：二极管从右至左依次全部点亮
+*************************************************************/
+
+#include "sys.h"
+#include "delay.h"
+#include "led.h"
+
+u8 light;
+
+int main( void )
+{
+	int p;
+ 	int interval = 100;
+	Stm32_Clock_Init( 6 );  //6倍频
+	delay_init( 72 ); //12M外部晶振
+	LED_Init();
+	GPIOE->ODR &= ~(0xff<<8);
+	LED_SEL = 1; //选择二极管	
+	
+	while( 1 )
+	{
+		light = 0x80;
+		GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+
+		for(p=0;p<7;p++){
+		light = light>>1;
+		 GPIOE->ODR |= (light<<8);
+		delay_ms( interval ); 
+		}
+		 GPIOE->ODR &= ~(0xff<<8);
+							
+	}
+}
+
+
