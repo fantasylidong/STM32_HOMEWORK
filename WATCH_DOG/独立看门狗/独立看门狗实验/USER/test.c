@@ -18,7 +18,7 @@ int main(void)
 	LED0=1;				 //点亮LED0
 	LED3=1;
 	while(1)
-	{
+	{//***重要***//
 		if(KEY_Scan()==1)
 			IWDG_Feed();//如果K1按下,则喂狗
 

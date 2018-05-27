@@ -44,17 +44,20 @@ int main(void)
 	Stm32_Clock_Init(6); //系统时钟设置
 	delay_init(72);	     //延时初始化 
 	uart_init(72,9600);	 //串口初始化为9600
+	//***重要***//
 	LED_Init();		  	 //LED初始化
 	second=0;minute=0;hour=0;
 	//Timerx_Init( 10000,10000 );//10Khz的计数频率，计数到5000为500ms  
 	SysTick_Configuration();
 	LED_SEL=0;
+	//***重要***//
 	OSInit(); // 操作系统初始化
+	//***重要***//
 	OSTaskCreate( TaskStart,	//task pointer
 					(void *)0,	//parameter
 					(OS_STK *)&TASK_START_STK[START_STK_SIZE-1],	//task stack top pointer
 					START_TASK_Prio );	//task priority
-	
+		//***重要***//
 	OSStart();	 // 启动操作系统
 	return 0;	   
 }
@@ -63,10 +66,11 @@ void TaskStart(void * pdata)
 {
 	pdata = pdata; 
 	OS_ENTER_CRITICAL();   
+	//***重要***//
 	OSTaskCreate( TaskLed, (void * )0, (OS_STK *)&TASK_LED_STK[LED_STK_SIZE-1], LED_TASK_Prio);
-	//OSTaskCreate( TaskLed1, (void * )0, (OS_STK *)&TASK_LED1_STK[LED1_STK_SIZE-1], LED1_TASK_Prio);
+	OSTaskCreate( TaskLed1, (void * )0, (OS_STK *)&TASK_LED1_STK[LED1_STK_SIZE-1], LED1_TASK_Prio);
 	//OSTaskSuspend(START_TASK_Prio);	//suspend but not delete
-	//OSTaskCreate( TaskLed, (void * )0, (OS_STK *)&TASK_WATCH_STK[WATCH_STK_SIZE-1], WATCH_TASK_Prio);
+	OSTaskCreate( TaskLed, (void * )0, (OS_STK *)&TASK_WATCH_STK[WATCH_STK_SIZE-1], WATCH_TASK_Prio);
 	OS_EXIT_CRITICAL();
 }
 //任务1

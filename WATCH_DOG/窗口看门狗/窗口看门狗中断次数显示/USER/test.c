@@ -14,7 +14,8 @@ int main(void)
 	delay_init(72);	     //延时初始化
 	uart_init(72,9600);  //串口初始化 
 	LED_Init();		  	 //初始化与LED连接的硬件接口
-	LED_SEL=0;	  
+	LED_SEL=0;
+	//***重要***//	  
 	WWDG_Init(0x7f,0x5f,8);//计数器值为7f,窗口寄存器为5f,分频数为8	   
  	while(1)
 	{

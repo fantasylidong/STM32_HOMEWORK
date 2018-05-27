@@ -15,6 +15,7 @@ int main(void)
 	uart_init(72,9600);  //串口初始化 
 	LED_Init();		  	 //初始化与LED连接的硬件接口
 	IWDG_Init(4,625);
+	//***重要***//
 	Timerx_Init( 7199,9999 );//10Khz的计数频率，计数到5000为500ms  
    	while(1)
 	{

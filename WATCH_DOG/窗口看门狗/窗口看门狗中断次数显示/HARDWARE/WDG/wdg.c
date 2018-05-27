@@ -36,15 +36,19 @@ u8 WWDG_CNT=0x7f;
 //fprer:窗口看门狗的实际设置
 //低2位有效.Fwwdg=PCLK1/4096/2^fprer.
 void WWDG_Init(u8 tr,u8 wr,u8 fprer)
-{							  
+{	
+	//***重要***//						  
 	RCC->APB1ENR |=1<<11 ;	//使能wwdg时钟
-	WWDG_CNT = tr & WWDG_CNT;   //初始化WWDG_CNT.									   
+	WWDG_CNT = tr & WWDG_CNT;   //初始化WWDG_CNT.
+	//***重要***//									   
 	WWDG->CFR |=fprer<<7 ;    //设置分频系数. PCLK1/4096再除2^fprer
 	WWDG->CFR &= 0XFF80;     
 	WWDG->CFR |= wr;		    //设定窗口值     
-	WWDG->CR |= WWDG_CNT|(1<<7); //开启看门狗,设置7位计数器   							   
+	WWDG->CR |= WWDG_CNT|(1<<7); //开启看门狗,设置7位计数器  
+	//***重要***// 							   
 	MY_NVIC_Init(2,3,WWDG_IRQChannel,2);// 窗口看门狗中断配置。抢占2，子优先级3，组2	   
 	WWDG->SR = 0X00;//清除提前唤醒中断标志位
+	//***重要***//
 	WWDG->CFR |= 1<<9;        //使能提前唤醒中断
 }
 //重设置WWDG计数器的值
@@ -60,7 +64,8 @@ void WWDG_IRQHandler(void)
 	tr = WWDG->CR&0X7F;
 	if(tr<wr)
 		WWDG_Set_Counter(WWDG_CNT);//只有当计数器的值,小于窗口寄存器的值才能写CR!!	  			    
-		feedtime++;	
+		feedtime++;
+	//***重要***//	
 	WWDG->SR=0X00;;//清除提前唤醒中断标志位
 
 }
